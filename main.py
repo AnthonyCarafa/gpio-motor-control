@@ -2,8 +2,7 @@ from gpiozero import PWMOutputDevice, DigitalOutputDevice
 from time import sleep
 
 class Motor:
-    a = False
-    def __init__(self, in_pin_1, in_pin_2, en_pin):
+    def __init__(self, in_pin_1, in_pin_2, en_pin): # setup func for the class
         self.en = PWMOutputDevice(en_pin)
         self.in_pin_1 = DigitalOutputDevice(in_pin_1)
         self.in_pin_2 = DigitalOutputDevice(in_pin_2)
@@ -22,6 +21,9 @@ class Motor:
         self.en.value = 0
         self.in_pin_1.off()
         self.in_pin_2.off()
+
+    def speed(self, speed):
+        self.en.value = speed
 
 test = Motor(1, 2, 3) # replace with real values
 
